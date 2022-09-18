@@ -5,12 +5,20 @@
         body {
             color: #878787;
         }
+        content{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .authform{
+            margin:auto;
+        }
     </style>
 
 @section('content')
 
     {{-- form for logging in with iin(12 digits) and password with ability to show password --}}
-    <div class="container m-auto">
+    <div class="container m-auto authform">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6 pb-5">
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth');
+    return view('auth', ['showNavbar'=>false]);
+});
+
+Route::get('/mainpage', function () {
+    return view('mainpage');
 });
 
 Route::post('/login', function () {
-    return view('auth');
+    return Controller::login();
 });

@@ -21,7 +21,7 @@
             display: flex;
             flex-direction: column;
             background-color: #F1F2F6;
-            min-height: 100vh;
+            height: 100vh;
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 500;
@@ -77,8 +77,31 @@
             color: #070707;
 
         }
+
+        .bottomnavbar {
+            height: 85px;
+            background: #FFFFFF;
+            box-shadow: 0px -3px 16px rgba(0, 0, 0, 0.25);
+            border-radius: 18px 18px 0px 0px;
+
+            display: flex;
+
+        }
+        .navbar-icon{
+            color: #000000;
+        }
+        .navbar-row{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+        .col-3{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
-    
+
     @yield('styles')
 </head>
 
@@ -87,12 +110,32 @@
 
     <div class="appbar">
         <div class="flex-row">
-            <span class="app-title float-left ml-3">{{ env('APP_NAME') }}</span>
-            <span class="currdate float-right mr-3">Wed <span class="currdate-day">10 Oct</span></span>
+            <span class="white-head app-title float-left ml-3">{{ env('APP_NAME') }}</span>
+            <span class="white-head currdate float-right mr-3">Wed <span class="white-head currdate-day">10
+                    Oct</span></span>
         </div>
     </div>
-
-    @yield('content')
+    <content>
+        @yield('content')
+    </content>
+@if (!isset($showNavbar) || $showNavbar)
+    <div class="bottomnavbar">
+        <div class="flex-row navbar-row">
+            <div class="col-3">
+                <a href="/"><i class="fas fa-home fa-2x navbar-icon"></i></a>
+            </div>
+            <div class="col-3">
+                <a href="/"><i class="fas fa-user fa-2x navbar-icon"></i></a>
+            </div>
+            <div class="col-3">
+                <a href="/"><i class="fas fa-bell fa-2x navbar-icon"></i></a>
+            </div>
+            <div class="col-3">
+                <a href="/"><i class="fas fa-cog fa-2x navbar-icon"></i></a>
+            </div>
+        </div>
+    </div>
+@endif
 
 
 
