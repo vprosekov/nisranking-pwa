@@ -2,17 +2,21 @@
 
 @section('styles')
     <style>
-
-        a{
+        html{
+            /* height: 100vh; */
+        }
+        a {
             text-decoration: none;
             color: white;
         }
-        a:hover{
+
+        a:hover {
             text-decoration: none;
             color: white;
         }
 
         body {
+            overflow: hidden;
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -24,6 +28,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            z-index: -1;
         }
 
         .appbar {
@@ -130,8 +135,33 @@
 
         header {
             background-color: #001E88;
-            height: 25vh;
+            height: fit-content;
             margin-bottom: 15px;
+            position: relative;
+            z-index: -1;
+        }
+
+        .front {
+            position: relative;
+            z-index: 100;
+        }
+
+        .nisbg {
+            /* background: url('https://psv4.userapi.com/c240331/u197674088/docs/d5/ce37d7b73bab/nis.png?extra=7Vo5gE9gMngxrqPLdAY1EpeZLlqqq3SrYagtQxNjxmCtu6PA7YVTGnvhBytp2N2BimtYSFBwmMwZ0o205_-Q8RjPvptqkkWjxQcB3auP1Qfllwy3TdJ-ZJoHkS7aQkWgzW4NO4Xc9XoXe88fuIzT2XQ'); */
+
+            /* on the backlground */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -100;
+            width:100vw;
+            overflow: hidden;
+            height: 120%;
+        }
+        .nisbg > img{
+            position: absolute;
+            top: 0;
+            right: -70px;
         }
 
         .maincontent {
@@ -151,6 +181,7 @@
 
             align-items: center;
             justify-items: center;
+            margin-top: -20px;
         }
 
         .button-icon>i {
@@ -191,13 +222,19 @@
 
 @section('content')
     <header>
-        <div class="profilephotodiv"><img src="https://www.meme-arsenal.com/memes/738ff7e55fffc9bd05f6307c341a550e.jpg"
-                class="profilephoto"></div>
-        <div class="studentid">#0001</div>
-        <div class="studentname">Prosekov Vladik</div>
-        <div class="shanyraqclass">Keruen Shanyragy | 12C</div>
-        <div class="topinstudents">#36</div>
-        <div class="understtoplable">IN NIS PTR students rating</div>
+        <div class="front">
+            <div class="profilephotodiv"><img src="https://www.meme-arsenal.com/memes/738ff7e55fffc9bd05f6307c341a550e.jpg"
+                    class="profilephoto"></div>
+            <div class="studentid">#0001</div>
+            <div class="studentname">Prosekov Vladik</div>
+            <div class="shanyraqclass">Keruen Shanyragy | 12C</div>
+            <div class="topinstudents">#36</div>
+            <div class="understtoplable">IN NIS PTR students rating</div>
+        </div>
+        <div class="nisbg">
+            <img
+                src="https://psv4.userapi.com/c240331/u197674088/docs/d5/ce37d7b73bab/nis.png?extra=7Vo5gE9gMngxrqPLdAY1EpeZLlqqq3SrYagtQxNjxmCtu6PA7YVTGnvhBytp2N2BimtYSFBwmMwZ0o205_-Q8RjPvptqkkWjxQcB3auP1Qfllwy3TdJ-ZJoHkS7aQkWgzW4NO4Xc9XoXe88fuIzT2XQ">
+        </div>
     </header>
     <div class="maincontent">
         {{-- grid of 4 card with size 150px background color 001B5F with icon 50x50px size in center and Shanyraq Rating label under icon --}}
