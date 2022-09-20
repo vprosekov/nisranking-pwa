@@ -221,42 +221,49 @@
 @endsection
 
 @section('content')
-    <header>
-        <div class="front">
-            <div class="profilephotodiv"><img src="https://www.meme-arsenal.com/memes/738ff7e55fffc9bd05f6307c341a550e.jpg"
-                    class="profilephoto"></div>
-            <div class="studentid">#0001</div>
-            <div class="studentname">Prosekov Vladik</div>
-            <div class="shanyraqclass">Keruen Shanyragy | 12C</div>
-            <div class="topinstudents">#36</div>
-            <div class="understtoplable">IN NIS PTR students rating</div>
-        </div>
-        <div class="nisbg">
-            <img
-                src="https://psv4.userapi.com/c240331/u197674088/docs/d5/ce37d7b73bab/nis.png?extra=7Vo5gE9gMngxrqPLdAY1EpeZLlqqq3SrYagtQxNjxmCtu6PA7YVTGnvhBytp2N2BimtYSFBwmMwZ0o205_-Q8RjPvptqkkWjxQcB3auP1Qfllwy3TdJ-ZJoHkS7aQkWgzW4NO4Xc9XoXe88fuIzT2XQ">
-        </div>
-    </header>
-    <div class="maincontent">
-        {{-- grid of 4 card with size 150px background color 001B5F with icon 50x50px size in center and Shanyraq Rating label under icon --}}
-        <div class="navigation-buttons">
-            <a href="/shanyraqsrating">
-                <div class="mainmenu-card">
-                    <div class="button-icon"><i class="fas fa-fist-raised"></i></div>
-                    <span class="button-label">Shanyraqs Rating</span>
-                </div>
-            </a>
-            <a href="/studentsrating">
-                <div class="mainmenu-card">
-                    <div class="button-icon"><i class="fas fa-fist-raised"></i></div>
-                    <span class="button-label">Students Rating</span>
-                </div>
-            </a>
-            <a href="/myachievements">
-                <div class="mainmenu-card">
-                    <div class="button-icon"><i class="fas fa-fist-raised"></i></div>
-                    <span class="button-label">My Achievements</span>
-                </div>
-            </a>
-        </div>
-    </div>
+<div class="content mb-auto">
+  <header>
+      <div class="front">
+          <div class="profilephotodiv"><img src="https://www.meme-arsenal.com/memes/738ff7e55fffc9bd05f6307c341a550e.jpg"
+                  class="profilephoto"></div>
+          <div class="studentid">#0001</div>
+          <div class="studentname">Prosekov Vladik</div>
+          <div class="shanyraqclass">Keruen Shanyragy | 12C</div>
+          <div class="topinstudents">#36</div>
+          <div class="understtoplable">IN NIS PTR students rating</div>
+      </div>
+      <div class="nisbg">
+          <img
+              src="https://psv4.userapi.com/c240331/u197674088/docs/d5/ce37d7b73bab/nis.png?extra=7Vo5gE9gMngxrqPLdAY1EpeZLlqqq3SrYagtQxNjxmCtu6PA7YVTGnvhBytp2N2BimtYSFBwmMwZ0o205_-Q8RjPvptqkkWjxQcB3auP1Qfllwy3TdJ-ZJoHkS7aQkWgzW4NO4Xc9XoXe88fuIzT2XQ">
+      </div>
+  </header>
+  <div class="maincontent">
+      {{-- grid of 4 card with size 150px background color 001B5F with icon 50x50px size in center and Shanyraq Rating label under icon --}}
+      <div class="navigation-buttons">
+          <a href="/shanyraqsrating">
+              <div class="mainmenu-card">
+                  <div class="button-icon"><i class="fas fa-fist-raised"></i></div>
+                  <span class="button-label">Shanyraqs Rating</span>
+              </div>
+          </a>
+          <a href="/studentsrating">
+              <div class="mainmenu-card">
+                  <div class="button-icon"><i class="fas fa-fist-raised"></i></div>
+                  <span class="button-label">Students Rating</span>
+              </div>
+          </a>
+          <a href="/myachievements">
+              <div class="mainmenu-card">
+                  <div class="button-icon"><i class="fas fa-fist-raised"></i></div>
+                  <span class="button-label">My Achievements</span>
+              </div>
+          </a>
+          <form action="exit" method="post">
+            @csrf
+            <input class="btn btn-primary" type="submit" name="exit" value="Exit">
+          </form>
+      </div>
+  </div>
+</div>
+
 @endsection

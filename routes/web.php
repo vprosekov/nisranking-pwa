@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
-
+use App\Http\Middleware\IsTokenValid;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,13 +16,19 @@ use App\Http\Controllers\Controller;
 */
 
 Route::get('/', function () {
+    return redirect('/mainpage');
+})->middleware(IsTokenValid::class);
+Route::get('/auth', function(){
     return view('auth', ['showNavbar'=>false]);
 });
 
 Route::get('/mainpage', function () {
     return view('mainpage');
-});
+})->middleware(IsTokenValid::class);
 
-Route::post('/login', function () {
-    return Controller::login();
+Route::post('/login', function (Request $request) {
+    return Controller::login($request);
+});
+Route::post('/exit',function(Request $request) {
+    return Controller::exit($request);
 });

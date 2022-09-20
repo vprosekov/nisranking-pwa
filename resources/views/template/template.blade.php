@@ -115,9 +115,8 @@
                     Oct</span></span>
         </div>
     </div>
-    <content>
-        @yield('content')
-    </content>
+    @yield('content')
+    
 @if (!isset($showNavbar) || $showNavbar)
     <div class="bottomnavbar">
         <div class="flex-row navbar-row">
