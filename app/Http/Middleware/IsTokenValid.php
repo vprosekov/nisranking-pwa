@@ -3,7 +3,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Http\Models\users;
+use App\Models\users;
 
 class IsTokenValid
 {
@@ -21,10 +21,11 @@ class IsTokenValid
      }
     public function handle(Request $request, Closure $next)
     {
+
       if(!session()->has('token')){
           return redirect('/auth');
       }
-      $users = \App\Models\users::where("apiKey",session('token')[0]['apiKey'])->count();
+      $users = users::where("apiKey",session('token')[0]['apiKey'])->count();
       if ($users == 0) {
           return redirect('/auth');
       }

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use App\Http\Models\users;
+use App\Models\users;
 use Illuminate\Support\Facades\Log;
 
 class Controller extends BaseController
@@ -16,8 +16,7 @@ class Controller extends BaseController
 
     public function boot(Router $router)
     {
-
-        $router->model('users', '\App\Models\users');
+        $router->model('users', 'App\Models\users');
     }
     public static function login(Request $request)
     {
@@ -27,7 +26,7 @@ class Controller extends BaseController
         ]);
         //session()->forget('token');
         session()->forget('token');
-        $user = \App\Models\users::where("iin","=",$request->input('iin'))->where("password","=",md5($request->input('password')))->get('apiKey');
+        $user = users::where("iin","=",$request->input('iin'))->where("password","=",md5($request->input('password')))->get('apiKey');
         if (count($user) == 0) {
             return back()->withErrors([
                'iin' => "The provided iin is empty or not match with records",
