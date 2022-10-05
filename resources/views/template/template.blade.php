@@ -54,10 +54,13 @@
             font-family: 'Montserrat';
             src: url('/fonts/Montserrat-Regular.ttf');
         }
+<<<<<<< HEAD
+=======
 		@font-face {
             font-family: 'Montserrat-Bold';
             src: url('/fonts/Montserrat-Bold.ttf');
         }
+>>>>>>> 0182f344453c4caac581daedc1ea7faf4ce6b4e4
 
         .appbar {
 			margin-top:10px;

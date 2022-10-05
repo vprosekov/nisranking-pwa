@@ -139,17 +139,37 @@
         header {
             height: fit-content;
             margin-bottom: 25px;
+<<<<<<< HEAD
+            position: relative;
+            z-index: -1;
+
+        }
+
+        .front {
+            position: relative;
+            z-index: 100;
+        }
+
+        .nisbg {
+            /* background: url('https://psv4.userapi.com/c240331/u197674088/docs/d5/ce37d7b73bab/nis.png?extra=7Vo5gE9gMngxrqPLdAY1EpeZLlqqq3SrYagtQxNjxmCtu6PA7YVTGnvhBytp2N2BimtYSFBwmMwZ0o205_-Q8RjPvptqkkWjxQcB3auP1Qfllwy3TdJ-ZJoHkS7aQkWgzW4NO4Xc9XoXe88fuIzT2XQ'); */
+=======
+>>>>>>> 0182f344453c4caac581daedc1ea7faf4ce6b4e4
 
         }
 
         .maincontent {
             height: 100%;
             width: auto;
+<<<<<<< HEAD
+            border-top-left-radius: 3%;
+            border-top-right-radius: 3%;
+=======
 			display:flex;
 			flex-direction:column;
 			background: #FFFFFF;
 			box-shadow: 0px 1px 25px #331C74;
 			border-radius: 50px 50px 0px 0px;
+>>>>>>> 0182f344453c4caac581daedc1ea7faf4ce6b4e4
         }
 
         .navigation-buttons {
@@ -212,6 +232,15 @@
           <div class="studentid">#{{$student[0]['id']}}</div>
           <div class="studentname">{{$student[0]['name']}}</div>
           <div class="shanyraqclass">{{$student[0]['shanyraqName'].' Shanyraqy | '.$student[0]['grade']}}</div>
+<<<<<<< HEAD
+          <div class="topinstudents">#{{$student[0]['rank']}}</div>
+          <div class="understtoplable">IN NIS PTR students rating</div>
+      </div>
+      <div class="nisbg">
+          <img
+              src="https://psv4.userapi.com/c240331/u197674088/docs/d5/ce37d7b73bab/nis.png?extra=7Vo5gE9gMngxrqPLdAY1EpeZLlqqq3SrYagtQxNjxmCtu6PA7YVTGnvhBytp2N2BimtYSFBwmMwZ0o205_-Q8RjPvptqkkWjxQcB3auP1Qfllwy3TdJ-ZJoHkS7aQkWgzW4NO4Xc9XoXe88fuIzT2XQ">
+=======
+>>>>>>> 0182f344453c4caac581daedc1ea7faf4ce6b4e4
       </div>
   </header>
   <div class="maincontent">

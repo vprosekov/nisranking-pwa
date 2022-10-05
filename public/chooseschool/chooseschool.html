@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>OQUSHY - Выбор школы</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      @font-face {
+        font-family: "Montserrat";
+        src: url("Montserrat-Regular.ttf");
+      }
+      html,
+      body {
+        min-height: 100vh;
+        width: 100vw;
+      }
+      body {
+        background: linear-gradient(150.85deg, #8776b7 0%, #150052 42.85%);
+        display: flex;
+        flex-direction: column;
+        font-family: "Montserrat", "";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 80%;
+        letter-spacing: -0.04em;
+      }
+      .appbar {
+        margin-top: 10px;
+        height: 30px;
+      }
+
+      .main-page-header {
+        height: 25vh;
+        background-color: #ffffff;
+      }
+
+      .currdate {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 195.69%;
+        /* or 23px */
+
+        color: #ffffff;
+      }
+
+      .currdate-day {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 195.69%;
+        /* or 23px */
+        margin-left: 4px;
+
+        color: #ffffff;
+      }
+
+      .app-title {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 195.69%;
+        /* identical to box height, or 12px */
+
+        letter-spacing: -0.04em;
+
+        color: #ffffff;
+
+        text-shadow: 0px 4px 12px #160052;
+      }
+      content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin-top: 15vh;
+        margin-bottom: auto;
+      }
+      label {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 195.69%;
+        /* or 23px */
+
+        color: #ffffff;
+      }
+      .form-group {
+        width: 60%;
+      }
+      .text-center {
+        text-align: center;
+        color: #ffffff;
+        font-weight: bold;
+        margin-bottom: 5vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="appbar">
+      <div class="flex-row">
+        <span class="white-head app-title float-left ml-3">OQUSHY</span>
+        <span class="white-head currdate float-right mr-3"
+          >Wed <span class="white-head currdate-day">10 Oct</span></span
+        >
+      </div>
+    </div>
+
+    <content>
+      <!-- Выберите школу чтобы войти в систему heading -->
+      <h3 class="text-center">Выберите школу чтобы войти в систему</h3>
+      <!-- form to select region, city, school -->
+      <div class="form-group">
+        <label for="region">Область</label>
+        <select class="form-control" id="region" required></select>
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="city">Город</label>
+        <select class="form-control" id="city" required></select>
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="school">Школа</label>
+        <select class="form-control" id="school" required></select>
+      </div>
+      <button type="button" class="btn btn-primary" id="btn">
+        Войти в систему
+      </button>
+    </content>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // console.log week day
+      var dt = new Date();
+      var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+      var weekday = weekdays[dt.getDay()];
+      //month name
+      var months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      var month = months[dt.getMonth()];
+      //day of month
+      var day = dt.getDate();
+
+      $(".currdate").html(
+        weekday +
+          ' <span class="white-head currdate-day">' +
+          day +
+          " " +
+          month +
+          "</span>"
+      );
+      // get data from availableschools.json in the same folder and wait for it to load
+      let schools = [];
+      $.getJSON("availableschools.json", function (data) {
+        schools = data;
+      }).then(function () {
+        $(document).ready(function () {
+          let region = $("#region");
+          let city = $("#city");
+          let school = $("#school");
+          let btn = $("#btn");
+
+          // -- Выберите область not active --
+          region.append(
+            $("<option></option>")
+              .attr("value", "")
+              .text("--Выберите область--")
+              .attr("disabled", true)
+              .attr("selected", true)
+          );
+          city.append(
+            $("<option></option>")
+              .attr("value", "")
+              .text("--Выберите город--")
+              .attr("disabled", true)
+              .attr("selected", true)
+          );
+          school.append(
+            $("<option></option>")
+              .attr("value", "")
+              .text("--Выберите школу--")
+              .attr("disabled", true)
+              .attr("selected", true)
+          );
+          $.each(schools, function (key, value) {
+            region.append('<option value="' + key + '">' + key + "</option>");
+          });
+
+          region.change(function () {
+            let selectedRegion = $(this).children("option:selected").val();
+            city.empty();
+            city.append(
+              $("<option></option>")
+                .attr("value", "")
+                .text("--Выберите город--")
+                .attr("disabled", true)
+                .attr("selected", true)
+            );
+            school.empty();
+            school.append(
+              $("<option></option>")
+                .attr("value", "")
+                .text("--Выберите школу--")
+                .attr("disabled", true)
+                .attr("selected", true)
+            );
+            $.each(schools[selectedRegion], function (key, value) {
+              city.append('<option value="' + key + '">' + key + "</option>");
+            });
+            // if only one, add schools
+            if (city.children("option").length == 2) {
+              let selectedRegion = region.children("option:selected").val();
+              let selectedCity = $(this).children("option:selected").val();
+              school.empty();
+              school.append(
+                $("<option></option>")
+                  .attr("value", "")
+                  .text("--Выберите школу--")
+                  .attr("disabled", true)
+                  .attr("selected", true)
+              );
+              $.each(
+                schools[selectedRegion][selectedCity],
+                function (key, value) {
+                  school.append(
+                    '<option value="' + value.id + '">' + key + "</option>"
+                  );
+                }
+              );
+            }
+          });
+
+          city.change(function () {
+            let selectedRegion = region.children("option:selected").val();
+            let selectedCity = $(this).children("option:selected").val();
+            school.empty();
+            school.append(
+              $("<option></option>")
+                .attr("value", "")
+                .text("--Выберите школу--")
+                .attr("disabled", true)
+                .attr("selected", true)
+            );
+            $.each(
+              schools[selectedRegion][selectedCity],
+              function (key, value) {
+                school.append(
+                  '<option value="' + value.id + '">' + key + "</option>"
+                );
+              }
+            );
+          });
+
+          btn.click(function () {
+            let selectedRegion = region.children("option:selected").val();
+            let selectedCity = city.children("option:selected").val();
+            let selectedSchool = school.children("option:selected").val();
+            let selectedSchoolName = school.children("option:selected").text();
+            let selectedSchoolUrl =
+              schools[selectedRegion][selectedCity][selectedSchoolName].url;
+            //window.open(selectedSchoolUrl, "_blank");
+            window.location.href = selectedSchoolUrl;
+          });
+        });
+      });
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

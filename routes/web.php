@@ -21,10 +21,13 @@ Route::middleware(IsTokenValid::class)->group(function(){
   Route::get('/mainpage', function () {
       return Controller::mainpage();
   });
+<<<<<<< HEAD
+=======
   Route::get('/myachievements', function () {
       return Controller::myachievements();
   });
 	
+>>>>>>> 0182f344453c4caac581daedc1ea7faf4ce6b4e4
 });
 
 Route::get('/auth', function(){
