@@ -136,9 +136,10 @@
         header {
             background-color: #001E88;
             height: fit-content;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             position: relative;
             z-index: -1;
+
         }
 
         .front {
@@ -167,7 +168,7 @@
         .maincontent {
             background-color: #FFFFFF;
             height: 100%;
-            width: 100vw;
+            width: auto;
             border-top-left-radius: 3%;
             border-top-right-radius: 3%;
         }
@@ -224,12 +225,12 @@
 <div class="content mb-auto">
   <header>
       <div class="front">
-          <div class="profilephotodiv"><img src="https://www.meme-arsenal.com/memes/738ff7e55fffc9bd05f6307c341a550e.jpg"
+          <div class="profilephotodiv"><img src="{{$student[0]['photo']}}"
                   class="profilephoto"></div>
-          <div class="studentid">#0001</div>
-          <div class="studentname">Prosekov Vladik</div>
-          <div class="shanyraqclass">Keruen Shanyragy | 12C</div>
-          <div class="topinstudents">#36</div>
+          <div class="studentid">#{{$student[0]['id']}}</div>
+          <div class="studentname">{{$student[0]['name']}}</div>
+          <div class="shanyraqclass">{{$student[0]['shanyraqName'].' Shanyraqy | '.$student[0]['grade']}}</div>
+          <div class="topinstudents">#{{$student[0]['rank']}}</div>
           <div class="understtoplable">IN NIS PTR students rating</div>
       </div>
       <div class="nisbg">

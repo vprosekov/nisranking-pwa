@@ -14,18 +14,18 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(IsTokenValid::class)->group(function(){
+  Route::get('/', function () {
+      return redirect('/mainpage');
+  });
+  Route::get('/mainpage', function () {
+      return Controller::mainpage();
+  });
+});
 
-Route::get('/', function () {
-    return redirect('/mainpage');
-})->middleware(IsTokenValid::class);
 Route::get('/auth', function(){
     return view('auth', ['showNavbar'=>false]);
 });
-
-Route::get('/mainpage', function () {
-    return view('mainpage');
-})->middleware(IsTokenValid::class);
-
 Route::post('/login', function (Request $request) {
     return Controller::login($request);
 });

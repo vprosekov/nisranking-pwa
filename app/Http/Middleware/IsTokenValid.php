@@ -16,20 +16,17 @@ class IsTokenValid
      */
      public function boot(Router $router)
      {
-
          $router->model('users', '\App\Models\users');
      }
-    public function handle(Request $request, Closure $next)
-    {
-
-      if(!session()->has('token')){
-          return redirect('/auth');
-      }
-      $users = users::where("apiKey",session('token')[0]['apiKey'])->count();
-      if ($users == 0) {
-          return redirect('/auth');
-      }
-
-      return $next($request);
-    }
+     public function handle(Request $request, Closure $next)
+     {
+         if(!session()->has('token')){
+            return redirect('/auth');
+         }
+         $users = users::where("apiKey",session('token')[0]['apiKey'])->count();
+         if ($users == 0) {
+            return redirect('/auth');
+         }
+         return $next($request);
+     }
 }

@@ -20,15 +20,25 @@
         html body {
             display: flex;
             flex-direction: column;
-            background-color: #F1F2F6;
+            background: linear-gradient(150.85deg, #8776B7 0%, #150052 42.85%);
             height: 100vh;
-            font-family: 'Poppins';
+            font-family: 'Montserrat';
             font-style: normal;
             font-weight: 500;
             font-size: 12px;
             line-height: 80%;
             letter-spacing: -0.04em;
+            color: #484848;
         }
+		
+		@media only screen and (min-width: 1080px) {
+		  /* For pc: */
+		  body>* {
+			  width: 40%;
+			  margin-left:auto;
+			  margin-right: auto;
+		  }
+		}
 
         @font-face {
             font-family: 'Roboto';
@@ -39,8 +49,14 @@
             font-family: 'Poppins';
             src: url('/fonts/Poppins-Regular.ttf');
         }
+        /* Montserrat-Regular.ttf */
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('/fonts/Montserrat-Regular.ttf');
+        }
 
         .appbar {
+			margin-top:10px;
             height: 30px;
         }
 
@@ -50,52 +66,69 @@
         }
 
         .currdate {
-            color: #252e65;
-            font-style: normal;
-            font-weight: 900;
-            font-size: 14px;
-            line-height: 195.69%;
-            letter-spacing: -0.02em;
+			font-weight: 600;
+			font-size: 14px;
+			line-height: 195.69%;
+			/* or 23px */
+
+
+			color: #FFFFFF;
         }
 
         .currdate-day {
-            color: #252e65;
-            font-style: normal;
-            font-weight: 100;
-            font-size: 14px;
-            line-height: 195.69%;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 195.69%;
+			/* or 23px */
+
+
+			color: #FFFFFF;
         }
 
         .app-title {
             font-style: normal;
-            font-weight: 900;
-            font-size: 14px;
+			font-weight: 400;
+			font-size: 14px;
             line-height: 195.69%;
+			/* identical to box height, or 12px */
 
-            letter-spacing: -0.04em;
+			letter-spacing: -0.04em;
 
-            color: #070707;
+			color: #FFFFFF;
+
+			text-shadow: 0px 4px 12px #160052;
 
         }
 
         .bottomnavbar {
             height: 85px;
             background: #FFFFFF;
-            box-shadow: 0px -3px 16px rgba(0, 0, 0, 0.25);
-            border-radius: 18px 18px 0px 0px;
+			box-shadow: 0px 2px 26px rgba(0, 0, 0, 0.25);
 
             display: flex;
 
+            z-index: 2;
+
         }
         .navbar-icon{
-            color: #000000;
+            font-size: 24px;
+			color: #3B1E8C;
+			text-shadow: 0px 1px 9px #A2A2A2;
         }
         .navbar-row{
             width: 100%;
             display: flex;
             flex-direction: row;
         }
+        
         .col-3{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar-row > .col-3 > a{
+            height: 100%;
+            width: 95%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -115,22 +148,32 @@
                     Oct</span></span>
         </div>
     </div>
-    @yield('content')
-    
+    <content>
+        @yield('content')
+    </content>
 @if (!isset($showNavbar) || $showNavbar)
     <div class="bottomnavbar">
         <div class="flex-row navbar-row">
+            {{-- home(mainpage), studentsrating(studentsrating), shanyraqsrating(shanyraqsrating), addachievement(addmyachievement) --}}
             <div class="col-3">
-                <a href="/"><i class="fas fa-home fa-2x navbar-icon"></i></a>
+                <a href="/mainpage">
+                    <i class="fas fa-home navbar-icon"></i>
+                </a>
             </div>
             <div class="col-3">
-                <a href="/"><i class="fas fa-user fa-2x navbar-icon"></i></a>
+                <a href="/studentsrating">
+                    <i class="fas fa-trophy navbar-icon"></i>
+                </a>
             </div>
             <div class="col-3">
-                <a href="/"><i class="fas fa-bell fa-2x navbar-icon"></i></a>
+                <a href="/shanyraqsrating">
+                    <i class="fas fa-award navbar-icon"></i>
+                </a>
             </div>
             <div class="col-3">
-                <a href="/"><i class="fas fa-cog fa-2x navbar-icon"></i></a>
+                <a href="/addmyachievement">
+                    <i class="fas fa-plus navbar-icon"></i>
+                </a>
             </div>
         </div>
     </div>

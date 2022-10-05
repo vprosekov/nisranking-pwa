@@ -28,6 +28,8 @@ Route::middleware(IsTokenValid::class)->prefix('v1')->group(function(){
     {
       Route::get('allstudents','allstudents');
       Route::get('getstudentinfo', 'getStudentInfo');
+      Route::get('getstudentachievements', 'getStudentAchievements');
+      Route::get('getstudentrank','getStudentRank');
     });
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -9,14 +9,22 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Models\users;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\api\v1\StudentController;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    private static function student(){
+        return new StudentController();
+    }
     public function boot(Router $router)
     {
         $router->model('users', 'App\Models\users');
+    }
+    public static function mainpage(){
+        $student = Controller::student()->getStudentInfo();
+        return view('mainpage',['student'=>$student->ToArray()]);
     }
     public static function login(Request $request)
     {
