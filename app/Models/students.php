@@ -58,14 +58,24 @@ class students extends Model
         $student = $this->join('users','students.studentId','=','users.id')
                         ->join('grades','grades.gradeId','=','students.gradeId')
                         ->join('shanyraqs','shanyraqs.id','=','grades.shanyraqId')
-                        ->select('users.id','users.photo','users.name','users.iin','gradeName','shanyraqs.name as shanyraqName')
+                        ->select('users.id','users.photo','users.name','users.iin','gradeName as grade','shanyraqs.name as shanyraqName')
                         ->where('apiKey',$apiKey)->get();
         if(sizeof($student)==0){
           return $student;
         }
-        $student[0]['shanyraqRole'] = $this->rolelist()->getShanyraqRole($student[0]['id']);
-        $student[0]['ministerRole'] = $this->rolelist()->getMinistryRole($student[0]['id']);
-        $student[0]['clubRole'] = $this->rolelist()->getMinistryRole($student[0]['id']);
+        $student[0]['shanyraqRole'] = $this->join('shanyraqleaders','shanyraqleaders.studentId','=','students.studentId')
+                                           ->where('students.studentId',$student[0]['id'])
+                                           ->count();
+        $student[0]['ministerRole'] = $this->join('ministrymembers','ministrymembers.studentId','=','students.studentId')
+                                           ->join('ministries','ministrymembers.ministryId','=','ministries.id')
+                                           ->where('students.studentId',$student[0]['id'])
+                                           ->select('ministrymembers.memberType','ministries.ministryName')
+                                           ->get()->toArray();
+        $student[0]['clubRole'] = $this->join('clubmembers','clubmembers.studentId','=','students.studentId')
+                                           ->join('clubs','clubmembers.clubId','=','clubs.id')
+                                           ->where('students.studentId',$student[0]['id'])
+                                           ->select('clubmembers.memberType','clubs.clubName')
+                                           ->get()->toArray();
         $student[0]['rank']  = $this->getStudentRank($apiKey);
         return $student;
     }
