@@ -49,4 +49,9 @@ class Controller extends BaseController
         session()->forget('token');
         return redirect('/');
     }
+	
+	public static function myachievements(){
+        $student = Controller::student()->getStudentInfo();
+        return view('achievements/myachievements',['student'=>$student->ToArray()]);
+    }
 }
